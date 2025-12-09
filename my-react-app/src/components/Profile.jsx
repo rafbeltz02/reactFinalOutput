@@ -1,98 +1,114 @@
-<Box sx={{ bgcolor:"#e9eef6", minHeight:"100vh", py:4 }}>
+import { Grid, Box, Typography, Avatar, Paper, Divider, Chip } from "@mui/material";
 
-  {/* HEADER — color only changed */}
-  <Box sx={{
-    bgcolor:"#1D3557",
-    color:"white",
-    textAlign:"center",
-    py:3,
-    fontSize:"22px",
-    fontWeight:"bold",
-    mb:4
-  }}>
-    PERSONAL PROFILE
-  </Box>
+export default function Profile() {
 
-  <Grid container spacing={4} sx={{ px:5 }}>
+  const profile = {
+    image: "/profile.jpg",
+    name: "Janerose Beltz",
+    title: "BSIT Student",
+    about: "A passionate learner focused on web development and UI design.",
+    skills: ["React", "JavaScript", "HTML", "CSS", "UI/UX"],
+    interests: ["Web Apps", "Frontend", "Modern UI", "Learning New Tech"],
+    experience: "Developed UI systems in React, login authentication and profile layouts.",
+    education: "BSIT • Cebu Technological University",
+    projects: ["ExpenSync", "Portfolio UI", "React Profile App"]
+  };
 
-    {/* LEFT PROFILE CARD — color only updated */}
-    <Grid item xs={12} md={4}>
-      <Paper sx={{
-        p:4,
-        borderRadius:3,
+  return (
+    <Box sx={{ bgcolor:"#e4ebf5", minHeight:"100vh", py:4 }}>
+
+      {/* HEADER — color only changed */}
+      <Box sx={{
+        bgcolor:"#0F172A",
+        color:"white",
         textAlign:"center",
-        bgcolor:"#ffffff",
-        border:"2px solid #457B9D",
-        boxShadow:"0 8px 25px rgba(0,0,0,.08)"
+        py:3,
+        fontSize:"22px",
+        fontWeight:"bold",
+        mb:4
       }}>
+        PERSONAL PROFILE
+      </Box>
 
-        <Avatar src="/profile.jpg"
-          sx={{
-            width:170, height:170,
-            mx:"auto", mb:2,
-            border:"6px solid #1D3557"
-          }}
-        />
+      <Grid container spacing={4} sx={{ px:5 }}>
 
-        <Typography variant="h5" fontWeight="900" color="#1D3557">
-          Janerose Beltz
-        </Typography>
-        <Typography sx={{opacity:.7, mb:2}}>BSIT Student</Typography>
+        {/* LEFT PROFILE CARD — colors only updated */}
+        <Grid item xs={12} md={4}>
+          <Paper sx={{
+            p:4,
+            borderRadius:3,
+            textAlign:"center",
+            bgcolor:"#ffffff",
+            border:"2px solid #1E40AF",
+            boxShadow:"0 10px 30px rgba(0,0,0,0.10)"
+          }}>
 
-        <Divider sx={{my:2}}/>
+            <Avatar src={profile.image}
+              sx={{
+                width:170, height:170,
+                mx:"auto", mb:2,
+                border:"5px solid #1E3A8A",   // New blue border
+                boxShadow:"0 0 12px rgba(30,58,138,0.45)"
+              }}
+            />
 
-        <Typography variant="h6" fontWeight="700" color="#1D3557">About Me</Typography>
-        <Typography sx={{fontSize:15, opacity:.85, mb:2}}>
-          Aspiring frontend developer passionate in UI design.
-        </Typography>
+            <Typography variant="h5" fontWeight="900" sx={{mt:1, color:"#0F172A"}}>
+              {profile.name}
+            </Typography>
+            <Typography sx={{opacity:.7, mb:2}}>{profile.title}</Typography>
 
-        <Typography variant="h6" fontWeight="700" color="#1D3557">Skills</Typography>
-        <Box>
-          <Chip label="React" sx={{m:.5}}/>
-          <Chip label="JavaScript" sx={{m:.5}}/>
-          <Chip label="HTML" sx={{m:.5}}/>
-          <Chip label="CSS" sx={{m:.5}}/>
-        </Box>
+            <Divider sx={{my:2}}/>
 
-        <Typography variant="h6" fontWeight="700" color="#1D3557" sx={{mt:2}}>
-          Interests
-        </Typography>
-        <Box>
-          <Chip label="Web Dev" sx={{m:.5}}/>
-          <Chip label="UI/UX" sx={{m:.5}}/>
-          <Chip label="Projects" sx={{m:.5}}/>
-        </Box>
-      </Paper>
-    </Grid>
+            <Typography variant="h6" fontWeight="700" color="#1E3A8A">About Me</Typography>
+            <Typography sx={{fontSize:15, opacity:.8, mb:2}}>
+              {profile.about}
+            </Typography>
 
+            <Typography variant="h6" fontWeight="700" color="#1E3A8A">Skills</Typography>
+            <Box sx={{my:1}}>
+              {profile.skills.map((s,i)=> 
+                <Chip key={i} label={s} sx={{m:.5, bgcolor:"#EEF2FF", color:"#1E3A8A"}}/>
+              )}
+            </Box>
 
-    {/* RIGHT SECTION — colors updated only*/}
-    <Grid item xs={12} md={8}>
+            <Typography variant="h6" fontWeight="700" sx={{mt:2, color:"#1E3A8A"}}>
+              Interests
+            </Typography>
+            <Box>
+              {profile.interests.map((i,x)=> 
+                <Chip key={x} label={i} variant="outlined" 
+                  sx={{m:.5, borderColor:"#1E3A8A", color:"#1E3A8A"}}
+                />
+              )}
+            </Box>
+          </Paper>
+        </Grid>
 
-      <Paper sx={{p:4, mb:3, borderRadius:3, borderLeft:"6px solid #1D3557"}}>
-        <Typography variant="h5" fontWeight="700">Experience</Typography>
-        <Divider sx={{my:1}}/>
-        <Typography>
-          Developed UI systems using React and Material UI.
-        </Typography>
-      </Paper>
+        {/* RIGHT SIDE — only color enhanced */}
+        <Grid item xs={12} md={8}>
 
-      <Paper sx={{p:4, mb:3, borderRadius:3, borderLeft:"6px solid #1D3557"}}>
-        <Typography variant="h5" fontWeight="700">Education</Typography>
-        <Divider sx={{my:1}}/>
-        <Typography>BSIT — Cebu Technological University</Typography>
-      </Paper>
+          <Paper sx={{p:4, mb:3, borderRadius:3, borderLeft:"6px solid #1E3A8A"}}>
+            <Typography variant="h5" fontWeight="700" color="#0F172A">Experience</Typography>
+            <Divider sx={{my:1}}/>
+            <Typography>{profile.experience}</Typography>
+          </Paper>
 
-      <Paper sx={{p:4, borderRadius:3, borderLeft:"6px solid #1D3557"}}>
-        <Typography variant="h5" fontWeight="700">Projects</Typography>
-        <Divider sx={{my:1}}/>
-        <ul style={{fontSize:"16px", lineHeight:"26px"}}>
-          <li>ExpenSync</li>
-          <li>React Portfolio</li>
-          <li>Profile UI System</li>
-        </ul>
-      </Paper>
+          <Paper sx={{p:4, mb:3, borderRadius:3, borderLeft:"6px solid #1E3A8A"}}>
+            <Typography variant="h5" fontWeight="700" color="#0F172A">Education</Typography>
+            <Divider sx={{my:1}}/>
+            <Typography>{profile.education}</Typography>
+          </Paper>
 
-    </Grid>
-  </Grid>
-</Box>
+          <Paper sx={{p:4, borderRadius:3, borderLeft:"6px solid #1E3A8A"}}>
+            <Typography variant="h5" fontWeight="700" color="#0F172A">Projects</Typography>
+            <Divider sx={{my:1}}/>
+            <ul style={{fontSize:"16px", lineHeight:"26px"}}>
+              {profile.projects.map((p,i)=> <li key={i}>{p}</li>)}
+            </ul>
+          </Paper>
+
+        </Grid>
+      </Grid>
+    </Box>
+  );
+}
