@@ -1,17 +1,32 @@
-import { Card, CardContent, Typography, TextField, Button, Box } from "@mui/material";
+import { useState } from "react";
+import { TextField, Button, Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-export default function SignUp_MUI(){
-  return(
-    <Card sx={{maxWidth:400, margin:2, p:1}}>
-      <CardContent>
-        <Typography variant="h5" gutterBottom>Sign Up</Typography>
+export default function SignUp_MUI() {
+  const nav = useNavigate();
+  const [user, setUser] = useState({
+    name: "", about: "", skills: "", interests: "",
+    experience: "", education: "", projects: "",
+    email: "", password: ""
+  });
 
-        <TextField fullWidth label="Full Name" margin="normal"/>
-        <TextField fullWidth label="Email" margin="normal"/>
-        <TextField fullWidth label="Password" type="password" margin="normal"/>
+  const submit = () => {
+    localStorage.setItem("userData", JSON.stringify(user));
+    alert("Account created successfully!");
+    nav("/");
+  };
 
-        <Button variant="contained" fullWidth sx={{mt:2}}>Create Account</Button>
-      </CardContent>
-    </Card>
+  return (
+    <Box sx={{maxWidth:500, mx:"auto", p:4}}>
+      <h2>Create Account</h2>
+
+      {Object.keys(user).map((key)=>(
+        <TextField key={key} label={key.toUpperCase()} fullWidth sx={{mb:2}}
+        onChange={e=>setUser({...user,[key]:e.target.value})}/>
+      ))}
+
+      <Button variant="contained" fullWidth onClick={submit}>Sign Up</Button>
+      <Button fullWidth sx={{mt:1}} onClick={()=>nav("/")}>Already have an account?</Button>
+    </Box>
   );
 }
