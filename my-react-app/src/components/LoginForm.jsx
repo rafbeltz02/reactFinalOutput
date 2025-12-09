@@ -1,0 +1,10 @@
+export default function LoginForm() {
+  return (
+    <div style={{padding:20}}>
+      <h2>Login</h2>
+      <input type="text" placeholder="Username" /><br /><br />
+      <input type="password" placeholder="Password" /><br /><br />
+      <button>Login</button>
+    </div>
+  );
+}
