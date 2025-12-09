@@ -4,7 +4,7 @@ export default function Profile() {
 
   const profile = {
     image: "/profile.jpg",
-    name: "Janerose Beltz",
+    name: "Beltran Pestañas",
     title: "BSIT Student",
     about: "A passionate learner focused on web development and UI design.",
     skills: ["React", "JavaScript", "HTML", "CSS", "UI/UX"],
