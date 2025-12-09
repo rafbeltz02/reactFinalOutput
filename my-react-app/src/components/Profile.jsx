@@ -6,105 +6,100 @@ export default function Profile() {
     image: "/profile.jpg",
     name: "Janerose Beltz",
     title: "BSIT Student",
-    about: "A passionate learner focused on web development, UI design, and hands-on project building.",
+    about: "A passionate learner focused on web development and UI design.",
     skills: ["React", "JavaScript", "HTML", "CSS", "UI/UX"],
     interests: ["Web Apps", "Frontend", "Modern UI", "Learning New Tech"],
-    experience: "Developed multiple basic UI systems with React and Material UI. Experienced in login authentication and responsive UI design.",
-    education: "BS Information Technology · Cebu Technological University",
-    projects: ["ExpenSync App", "React Portfolio Website", "UI Login/Profile System"]
+    experience: "Developed UI systems in React, login authentication and profile layouts.",
+    education: "BSIT • Cebu Technological University",
+    projects: ["ExpenSync", "Portfolio UI", "React Profile App"]
   };
 
   return (
-    <Box sx={{ bgcolor:"#f3f5f9", minHeight:"100vh", py:4 }}>
+    <Box sx={{ bgcolor:"#eef2f7", minHeight:"100vh", py:4 }}>
 
-      {/* ==== HEADER SIMPLE AND CLEAN ==== */}
+      {/* HEADER */}
       <Box sx={{
-        bgcolor:"#203354", color:"white",
-        textAlign:"center", py:3, mb:4,
-        fontSize:"20px", fontWeight:700
+        bgcolor:"#1b2a41",
+        color:"white",
+        textAlign:"center",
+        py:3,
+        fontSize:"22px",
+        fontWeight:"bold",
+        mb:4
       }}>
-        Personal Profile
+        PERSONAL PROFILE
       </Box>
 
-      {/* ==== MAIN LAYOUT (LEFT + RIGHT) ==== */}
+      {/* MAIN GRID LAYOUT */}
       <Grid container spacing={4} sx={{ px:5 }}>
 
-        {/* ================= LEFT PROFILE CARD ================= */}
+        {/* LEFT = PROFILE CARD */}
         <Grid item xs={12} md={4}>
-          <Paper elevation={4} sx={{
-            p:4, borderRadius:4, textAlign:"center",
-            bgcolor:"#ffffff", boxShadow:"0 6px 20px rgba(0,0,0,.08)"
+          <Paper sx={{
+            p:4,
+            borderRadius:3,
+            textAlign:"center",
+            bgcolor:"#fff",
+            boxShadow:"0 8px 20px rgba(0,0,0,.08)"
           }}>
-
-            {/* Profile Image */}
-            <Avatar
-              src={profile.image}
+            
+            <Avatar src={profile.image}
               sx={{
-                width:170, height:170, mx:"auto",
-                mb:2, border:"5px solid #203354",
-                boxShadow:"0 0 10px rgba(0,0,0,.2)"
+                width:170, height:170,
+                mx:"auto", mb:2,
+                border:"5px solid #1b2a41"
               }}
             />
 
-            {/* Name + Title */}
-            <Typography variant="h5" fontWeight={800}>{profile.name}</Typography>
-            <Typography sx={{opacity:.6, mb:2}}>{profile.title}</Typography>
+            <Typography variant="h5" fontWeight="900" sx={{mt:1}}>
+              {profile.name}
+            </Typography>
+            <Typography sx={{opacity:.7, mb:2}}>{profile.title}</Typography>
 
             <Divider sx={{my:2}}/>
 
-            {/* ABOUT */}
-            <Typography variant="h6" fontWeight={700}>About Me</Typography>
-            <Typography sx={{fontSize:15, opacity:.8, mb:2}}>{profile.about}</Typography>
+            <Typography variant="h6" fontWeight="700">About Me</Typography>
+            <Typography sx={{fontSize:15, opacity:.8, mb:2}}>
+              {profile.about}
+            </Typography>
 
-            {/* SKILLS */}
-            <Typography variant="h6" fontWeight={700} sx={{mt:2}}>Skills</Typography>
-            {profile.skills.map((s,i)=><Chip key={i} label={s} sx={{m:.4}}/>)}
+            <Typography variant="h6" fontWeight="700">Skills</Typography>
+            <Box sx={{my:1}}>
+              {profile.skills.map((s,i)=> <Chip key={i} label={s} sx={{m:.5}}/>)}
+            </Box>
 
-            {/* INTERESTS */}
-            <Typography variant="h6" fontWeight={700} sx={{mt:2}}>Interests</Typography>
-            {profile.interests.map((i,x)=>
-              <Chip key={x} label={i} variant="outlined" sx={{m:.4}}/>
-            )}
+            <Typography variant="h6" fontWeight="700" sx={{mt:2}}>Interests</Typography>
+            <Box>
+              {profile.interests.map((i,x)=> <Chip key={x} label={i} variant="outlined" sx={{m:.5}}/>)}
+            </Box>
+
           </Paper>
         </Grid>
 
-        {/* ================= RIGHT DETAILS CARDS ================= */}
+        {/* RIGHT SIDE */}
         <Grid item xs={12} md={8}>
 
-          {/* EXPERIENCE */}
-          <Paper elevation={3} sx={{
-            p:4, borderRadius:4, mb:3, bgcolor:"#ffffff",
-            boxShadow:"0 4px 14px rgba(0,0,0,.06)"
-          }}>
-            <Typography variant="h5" fontWeight={700}>Experience</Typography>
+          <Paper sx={{p:4, mb:3, borderRadius:3}}>
+            <Typography variant="h5" fontWeight="700">Experience</Typography>
             <Divider sx={{my:1}}/>
-            <Typography sx={{fontSize:16}}>{profile.experience}</Typography>
+            <Typography>{profile.experience}</Typography>
           </Paper>
 
-          {/* EDUCATION */}
-          <Paper elevation={3} sx={{
-            p:4, borderRadius:4, mb:3, bgcolor:"#ffffff",
-            boxShadow:"0 4px 14px rgba(0,0,0,.06)"
-          }}>
-            <Typography variant="h5" fontWeight={700}>Education</Typography>
+          <Paper sx={{p:4, mb:3, borderRadius:3}}>
+            <Typography variant="h5" fontWeight="700">Education</Typography>
             <Divider sx={{my:1}}/>
-            <Typography sx={{fontSize:16}}>{profile.education}</Typography>
+            <Typography>{profile.education}</Typography>
           </Paper>
 
-          {/* PROJECTS */}
-          <Paper elevation={3} sx={{
-            p:4, borderRadius:4, bgcolor:"#ffffff",
-            boxShadow:"0 4px 14px rgba(0,0,0,.06)"
-          }}>
-            <Typography variant="h5" fontWeight={700}>Projects</Typography>
+          <Paper sx={{p:4, borderRadius:3}}>
+            <Typography variant="h5" fontWeight="700">Projects</Typography>
             <Divider sx={{my:1}}/>
-            <ul style={{fontSize:"16px", lineHeight:"26px", marginLeft:"18px"}}>
-              {profile.projects.map((p,i)=><li key={i}>{p}</li>)}
+            <ul style={{fontSize:"16px", lineHeight:"26px"}}>
+              {profile.projects.map((p,i)=> <li key={i}>{p}</li>)}
             </ul>
           </Paper>
 
         </Grid>
-
       </Grid>
     </Box>
   );
