@@ -1,4 +1,4 @@
-import { Grid, Box, Typography } from "@mui/material";
+import { Grid, Box, Typography, Avatar } from "@mui/material";
 
 export default function Profile() {
   const data = JSON.parse(localStorage.getItem("userData"));
@@ -6,10 +6,21 @@ export default function Profile() {
 
   return (
     <Grid container>
+
       {/* LEFT PANEL */}
       <Grid item xs={12} md={4}>
-        <Box sx={{p:4, bgcolor:"#1e3a57", color:"#fff", minHeight:"100vh"}}>
-          <Typography variant="h4">{data.name}</Typography><hr/>
+        <Box sx={{p:4, bgcolor:"#1e3a57", color:"#fff", minHeight:"100vh", textAlign:"center"}}>
+
+          {/* PROFILE IMAGE HERE */}
+          <Avatar 
+            src={data.image} 
+            sx={{
+              width:150, height:150, border:"4px solid white", mb:2, mx:"auto"
+            }}
+          />
+
+          <Typography variant="h4">{data.name}</Typography>
+          <hr/>
 
           <h3>About</h3><p>{data.about}</p>
           <h3>Skills</h3><ul>{data.skills.split(',').map((x,i)=><li key={i}>{x}</li>)}</ul>
