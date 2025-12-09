@@ -5,14 +5,23 @@ import { useNavigate } from "react-router-dom";
 export default function SignUp_MUI() {
   const nav = useNavigate();
   const [user, setUser] = useState({
-    name: "", about: "", skills: "", interests: "",
-    experience: "", education: "", projects: "",
-    email: "", password: ""
+    image:"",
+    name:"", about:"", skills:"", interests:"",
+    experience:"", education:"", projects:"",
+    email:"", password:""
   });
+
+  // Convert image to Base64 and store
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => setUser({...user, image: reader.result});
+    reader.readAsDataURL(file);
+  };
 
   const submit = () => {
     localStorage.setItem("userData", JSON.stringify(user));
-    alert("Account created successfully!");
+    alert("Account Created Successfully!");
     nav("/");
   };
 
@@ -20,9 +29,12 @@ export default function SignUp_MUI() {
     <Box sx={{maxWidth:500, mx:"auto", p:4}}>
       <h2>Create Account</h2>
 
-      {Object.keys(user).map((key)=>(
+      {/* UPLOAD IMAGE */}
+      <input type="file" accept="image/*" onChange={handleImageUpload} style={{marginBottom:"15px"}} />
+
+      {Object.keys(user).filter(k=>k!=="image").map((key)=>(
         <TextField key={key} label={key.toUpperCase()} fullWidth sx={{mb:2}}
-        onChange={e=>setUser({...user,[key]:e.target.value})}/>
+        onChange={e=>setUser({...user,[key]:e.target.value})} />
       ))}
 
       <Button variant="contained" fullWidth onClick={submit}>Sign Up</Button>
